@@ -111,10 +111,18 @@ h2 {
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 #hero-section h2 {
   margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: var(--main-accent);
+    font-size: 2rem;
+    text-shadow: 2px 2px 5px var(--bg-dark);
 }
 
 #hero-section a:hover {
@@ -130,22 +138,28 @@ h2 {
 }
 
 #hero-section li {
-  font-size: 0.9em;
-  color: var(--accent-color);
+  list-style: none;
+  font-size: 0.85em;
+  color: var(--main-accent);
+}
+
+#hero-section li h2 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 #cta-button {
-  display: inline-block;
-  max-width: 28vw;
-  max-height: 12vh;
-  padding: 0.6rem;
-  background-color: var(--accent-color);
-  color: var(--text-color);
-  font-weight: 700;
-  border-radius: 0.3rem;
+  background-color: var(--main-accent);
+  color: var(--bg-light);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
 #cta-button:hover {
+  transform: scale(1.05);
   opacity: 0.6;
 }
 
