@@ -160,7 +160,7 @@ h2 {
   max-height: 10vh;
   padding: 0.5rem;
   background-color: var(--main-accent);
-  color: var(--primary-text);
+  color: rgb(247, 244, 244);
   font-weight: 800;
   border-radius: 0.25rem;
 }
