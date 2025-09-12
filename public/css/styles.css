@@ -10,12 +10,10 @@
 
 :root {
   --primary-background: #fff;
-  --main-accent: #012d46;
-  --body-font: Inter;
+  --main-accent: #03507c;
+  --body-font: "Inter";
   --primary-text: #010102;
-  /* Added for header.ejs */
-  --heading-font: Literata;
-  /* Added for main content area (index.ejs) */
+  --heading-font: "Literata";
 }
 
 body {
@@ -31,7 +29,7 @@ body {
   padding-bottom: 1em;
 }
 
-/* BEGIN header.ejs styles */
+/*header.ejs styles */
 #top-header {
   display: flex;
   justify-content: space-between;
@@ -52,6 +50,7 @@ body {
 
 header>img {
   max-width: 40%;
+  height: auto;
 }
 
 header a {
@@ -72,7 +71,7 @@ nav {
 nav ul {
   display: flex;
   padding: 0 1vw;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 nav li {
@@ -115,7 +114,7 @@ h2 {
 #hero-section {
   background-image: url("/images/vehicles/delorean.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   margin-left: auto;
   margin-right: auto;
@@ -160,7 +159,7 @@ h2 {
   max-height: 10vh;
   padding: 0.5rem;
   background-color: var(--main-accent);
-  color: rgb(247, 244, 244);
+  color: var(--primary-background);
   font-weight: 800;
   border-radius: 0.25rem;
 }
@@ -277,7 +276,7 @@ section {
     margin-top: 1.5em;
     padding: 1rem;
     background-color: var(--main-accent);
-    color: var(--primary-text);
+    color: var(--primary-background);
     font-weight: 800;
     font-size: large;
   }
