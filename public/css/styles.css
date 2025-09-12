@@ -10,9 +10,9 @@
 
 :root {
   --primary-background: #fff;
-  --main-accent: #01b0d3;
+  --main-accent: #85ebff;
   --body-font: Inter;
-  --primary-text: #242333;
+  --primary-text: #010102;
   /* Added for header.ejs */
   --heading-font: Literata;
   /* Added for main content area (index.ejs) */
@@ -112,7 +112,7 @@ h2 {
   font-family: var(--heading-font), serif;
 }
 
-#hero {
+#hero-section {
   background-image: url("/images/vehicles/delorean.jpg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -122,26 +122,26 @@ h2 {
   display: flex;
 }
 
-#hero h2 {
+#hero-section h2 {
   margin-left: 0;
 }
 
-#hero a:hover {
+#hero-section a:hover {
   opacity: 0.5;
 }
 
-#hero li {
+#hero-section li {
   list-style: none;
   color: var(--main-accent);
 }
 
-#hero li h2 {
+#hero-section li h2 {
   margin-top: 0;
   margin-bottom: 0;
   color: var(--main-accent);
 }
 
-#hero ul {
+#hero-section ul {
   padding-left: 0;
   margin-top: 0;
   max-width: 200px;
@@ -150,7 +150,7 @@ h2 {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-#hero li {
+#hero-section li {
   font-size: 0.85em;
 }
 
@@ -179,7 +179,7 @@ section ul {
   margin-bottom: 1em;
 }
 
-.flex {
+.flex-container {
   display: flex;
   margin-bottom: 2em;
   justify-content: center;
@@ -191,7 +191,7 @@ section ul {
   width: 100%;
 }
 
-.add-col {
+.add-column {
   background-color: var(--main-accent);
   height: 5.5em;
   width: 95%;
