@@ -1,12 +1,15 @@
 <%# Content Heading %>
 <% if (title) { %>
-    <h1>
-        <%= title %>
-    </h1>
-    <% } else { res.redirect('/') } %>
-
-<%# Message Block %>
-<%# messages() %>
+    <h1 class="page-title"><%= title %></h1>
+<% } else { %>
+    <% res.redirect('/') %>
+<% } %>
 
 <%# Inventory Grid %>
-<%- grid %>
+<% if (grid) { %>
+    <div class="inventory-grid">
+        <%- grid %>
+    </div>
+<% } else { %>
+    <p class="notice">Sorry, no vehicles could be found for this classification.</p>
+<% } %>

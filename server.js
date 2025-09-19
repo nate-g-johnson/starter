@@ -13,6 +13,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
+const errorRoute = require("./routes/errorRoute")
 
 /* ***********************
  * View Engine and Templates
@@ -33,6 +34,7 @@ app.use("/inv", inventoryRoute)
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
+app.use(errorRoute)
 
 /* ***********************
 * Express Error Handler
