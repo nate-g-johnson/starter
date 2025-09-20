@@ -97,6 +97,19 @@ footer {
   margin-top: 2rem;
 }
 
+/* Footer links styling */
+footer a {
+  color: var(--main-accent);
+  text-decoration: none;
+  margin-left: 0.5em;
+  font-weight: 600;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
 footer p {
   margin: 0;
   padding: 0;
