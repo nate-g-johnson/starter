@@ -68,6 +68,16 @@ nav {
   color: var(--primary-background);
 }
 
+nav a {
+  color: var(--primary-background);
+  text-decoration: none;
+}
+
+nav a:focus,
+nav a:hover {
+  color: var(--main-accent);
+}
+
 nav ul {
   display: flex;
   padding: 0 1vw;
