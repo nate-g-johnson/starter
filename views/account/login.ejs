@@ -3,20 +3,20 @@
 </h1>
 
 <!-- Flash / error message -->
-<% if (message) { %>
+<% if (message && message.length> 0) { %>
     <div class="flash-message">
-        <%= message %>
+        <%= message[0] %>
     </div>
     <% } %>
 
-        <% if (errorMessage) { %>
+        <% if (errorMessage && errorMessage.length> 0) { %>
             <div class="error-message">
-                <%= errorMessage %>
+                <%= errorMessage[0] %>
             </div>
             <% } %>
 
                 <form method="post" action="/account/login" class="auth-form">
-                    <label for="account_email">Email Address</label>
+                    <label for="account_email">Email</label>
                     <input type="email" id="account_email" name="account_email" required>
 
                     <label for="account_password">Password</label>
@@ -26,6 +26,5 @@
                 </form>
 
                 <p class="register-link">
-                    Don’t have an account?
-                    <a href="/account/register">Register here</a>
+                    Don't have an account? <a href="/account/register">Register here</a>.
                 </p>

@@ -3,21 +3,19 @@
 </h1>
 
 <!-- Flash / error message -->
-<% if (message) { %>
+<% if (message && message.length> 0) { %>
     <div class="flash-message">
-        <%= message %>
+        <%= message[0] %>
     </div>
     <% } %>
 
-        <% if (errorMessage) { %>
+        <% if (errorMessage && errorMessage.length> 0) { %>
             <div class="error-message">
-                <%= errorMessage %>
+                <%= errorMessage[0] %>
             </div>
             <% } %>
 
-                <!-- Registration Form -->
                 <form method="post" action="/account/register" class="auth-form">
-
                     <label for="account_firstname">First Name</label>
                     <input type="text" id="account_firstname" name="account_firstname" required>
 
