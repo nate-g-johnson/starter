@@ -1,0 +1,35 @@
+<h1>
+    <%= title %>
+</h1>
+
+<!-- Flash / error message -->
+<% if (message) { %>
+    <div class="flash-message">
+        <%= message %>
+    </div>
+    <% } %>
+
+        <% if (errorMessage) { %>
+            <div class="error-message">
+                <%= errorMessage %>
+            </div>
+            <% } %>
+
+                <!-- Registration Form -->
+                <form method="post" action="/account/register" class="auth-form">
+
+                    <label for="account_firstname">First Name</label>
+                    <input type="text" id="account_firstname" name="account_firstname" required>
+
+                    <label for="account_lastname">Last Name</label>
+                    <input type="text" id="account_lastname" name="account_lastname" required>
+
+                    <label for="account_email">Email Address</label>
+                    <input type="email" id="account_email" name="account_email" required>
+
+                    <label for="account_password">Password</label>
+                    <input type="password" id="account_password" name="account_password" required
+                        title="Password must be at least 12 characters, contain 1 uppercase letter, 1 number, and 1 special character">
+
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
