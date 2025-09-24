@@ -3,35 +3,41 @@
 </h1>
 
 <!-- Flash / error message -->
-<% if (message && message.length> 0) { %>
-    <div class="flash-message">
-        <%= message[0] %>
-    </div>
+<% if (messages) { %>
+    <%= messages() %>
+        <% } %>
+
+<% if (errors) { %>
+    <ul class="notice">
+        <% errors.array().forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+            <% }) %>
+    </ul>
     <% } %>
 
-        <% if (errorMessage && errorMessage.length> 0) { %>
-            <div class="error-message">
-                <%= errorMessage[0] %>
-            </div>
-            <% } %>
+    <!-- Registration Form -->
+    <form method="post" action="/account/register" class="auth-form">
 
-                <form method="post" action="/account/register" class="auth-form">
-                    <label for="account_firstname">First Name</label>
-                    <input type="text" id="account_firstname" name="account_firstname" required>
+        <label for="account_firstname">First Name</label>
+        <input type="text" id="account_firstname" name="account_firstname" required>
 
-                    <label for="account_lastname">Last Name</label>
-                    <input type="text" id="account_lastname" name="account_lastname" required>
+        <label for="account_lastname">Last Name</label>
+        <input type="text" id="account_lastname" name="account_lastname" required>
 
-                    <label for="account_email">Email Address</label>
-                    <input type="email" id="account_email" name="account_email" required>
+        <label for="account_email">Email Address</label>
+        <input type="email" id="account_email" name="account_email" required>
 
-                    <label for="account_password">Password</label>
-                    <input type="password" id="account_password" name="account_password" required
-                        title="Password must be at least 12 characters, contain 1 uppercase letter, 1 number, and 1 special character">
+        <label for="accountPassword">Password:</label>
+        <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special
+            character</span>
+        <input type="password" name="account_password" id="accountPassword" required
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
 
-                    <button type="submit" class="btn-primary">Register</button>
-                </form>
+        <button type="submit" class="btn-primary">Register</button>
+    </form>
 
-                <p class="register-link">
-                    Already have an account? <a href="/account/login">Log in here</a>.
-                </p>
+    <p class="register-link">
+        Already have an account? <a href="/account/login">Log in here</a>.
+    </p>

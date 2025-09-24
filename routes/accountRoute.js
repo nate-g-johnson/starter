@@ -1,4 +1,5 @@
 //Needed Resources
+const regValidate = require("../utilities/account-validation")
 const express = require("express")
 const router = new express.Router()
 const utilities = require("../utilities/")
@@ -12,8 +13,13 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin))
 //register view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
 
-//registration route (POST)
-router.post("/register", utilities.handleErrors(accountController.registerAccount))
+// Process the registration data
+router.post(
+  "/register",
+  regValidate.registationRules(),
+  regValidate.checkRegData,
+  utilities.handleErrors(accountController.registerAccount)
+)
 
 //Export
 module.exports = router;
