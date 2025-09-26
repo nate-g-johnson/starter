@@ -45,4 +45,17 @@ async function getVehicleById(inv_id) {
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById }
+async function addClassification(classification_name) {
+  const sql = `INSERT INTO public.classification (classification_name) VALUES ($1)`
+  return pool.query(sql, [classification_name])
+}
+
+async function addInventory(invData) {
+  const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price } = invData
+  const sql = `INSERT INTO public.inventory
+    (classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price)
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`
+  return pool.query(sql, [classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price])
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById, addClassification, addInventory }

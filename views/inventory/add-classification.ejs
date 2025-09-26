@@ -1,0 +1,12 @@
+<h1>Add Classification</h1>
+<% if(errors){ errors.forEach(err=> { %>
+    <p class="error">
+        <%= err %>
+    </p>
+    <% }) } %>
+        <form action="/inv/add-classification" method="post" novalidate>
+            <label for="classification_name">Classification Name</label>
+            <input name="classification_name" id="classification_name" type="text" pattern="^[A-Za-z0-9]+$" required
+                value="<%= values.classification_name || '' %>">
+            <button type="submit">Add</button>
+        </form>

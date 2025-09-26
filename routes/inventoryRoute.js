@@ -1,11 +1,22 @@
-// Needed Resources 
 const express = require("express")
 const router = new express.Router() 
 const invController = require("../controllers/invController")
+const utilities = require("../utilities/")
 
-router.get("/type/:classificationId", invController.buildByClassificationId);
+// server-side validation middleware we'll add
+const { validateClassification, validateInventory } = require("../middleware/invValidation")
 
-//details for a single vehicle
-router.get("/detail/:inv_id", invController.buildDetailView);
+router.get("/type/:classificationId", invController.buildByClassificationId)
 
-module.exports = router;
+router.get("/detail/:inv_id", invController.buildDetailView)
+
+// New routes
+router.get("/", invController.buildManagementView)
+
+router.get("/add-classification", invController.getAddClassificationView)
+router.post("/add-classification", validateClassification, invController.postAddClassification)
+
+router.get("/add-inventory", invController.getAddInventoryView)
+router.post("/add-inventory", validateInventory, invController.postAddInventory)
+
+module.exports = router
