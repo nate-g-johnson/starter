@@ -57,7 +57,7 @@ router.post(
   "/update-password",
   utilities.checkLogin,
   validate.passwordRules(),
-  validate.checkRegData,
+  validate.checkPasswordData,
   utilities.handleErrors(accountController.updatePassword)
 );
 
@@ -67,7 +67,6 @@ router.get(
   utilities.checkLogin,
   utilities.handleErrors(accountController.accountLogout)
 );
-
 
 // Export
 module.exports = router;

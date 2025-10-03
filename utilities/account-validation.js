@@ -46,7 +46,9 @@ validate.registrationRules = () => {
         minNumbers: 1,
         minSymbols: 1,
       })
-      .withMessage("Password must be at least 12 characters long and include upper/lowercase, number, and special character."),
+      .withMessage(
+        "Password must be at least 12 characters long and include upper/lowercase, number, and special character."
+      ),
   ];
 };
 
@@ -65,18 +67,32 @@ validate.passwordRules = () => {
         minNumbers: 1,
         minSymbols: 1,
       })
-      .withMessage("Password must be at least 12 characters long and include upper/lowercase, number, and special character."),
+      .withMessage(
+        "Password must be at least 12 characters long and include upper/lowercase, number, and special character."
+      ),
   ];
 };
 
 /* ******************************
- * Generic checker (for update forms)
+ * Generic checker (for registration / update forms)
  * ***************************** */
 validate.checkData = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     req.flash("errors", errors.array().map(err => err.msg));
-    return res.redirect("back"); // safer for update forms
+    return res.redirect("back");
+  }
+  next();
+};
+
+/* ******************************
+ * Password checker (for password updates)
+ * ***************************** */
+validate.checkPasswordData = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    req.flash("errors", errors.array().map(err => err.msg));
+    return res.redirect("back"); 
   }
   next();
 };
