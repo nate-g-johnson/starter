@@ -57,7 +57,7 @@ router.post(
   "/update-password",
   utilities.checkLogin,
   validate.passwordRules(),
-  validate.checkPasswordData,
+  validate.checkData, // <- fixed: use existing checkData
   utilities.handleErrors(accountController.updatePassword)
 );
 
