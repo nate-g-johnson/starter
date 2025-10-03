@@ -7,6 +7,24 @@
         <%- include('../partials/navigation') %>
 
         <main>
+            <% if (success && success.length) { %>
+                <div class="notice">
+                    <% success.forEach(msg=> { %>
+                        <p>
+                            <%= msg %>
+                        </p>
+                        <% }) %>
+                </div>
+            <% } %>
+            
+            <% if (error && error.length) { %>
+                <div class="error-messages">
+                    <% error.forEach(err=> { %>
+                        <p class="error"><%= err %></p>
+                    <% }) %>
+                </div>
+            <% } %>
+            
             <%- body %>
         </main>
 

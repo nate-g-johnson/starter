@@ -1,10 +1,43 @@
 <h1>Inventory Management</h1>
-<% if (message) { %>
-    <div class="flash">
-        <%= message %>
-    </div>
-    <% } %>
-        <ul>
-            <li><a href="/inv/add-classification">Add Classification</a></li>
-            <li><a href="/inv/add-inventory">Add Inventory</a></li>
-        </ul>
+
+
+<!-- Flash / error messages -->
+<% if (success && success.length) { %>
+  <div class="notice">
+    <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="error-messages">
+    <% error.forEach(err => { %>
+      <p class="error"><%= err %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<!-- Management Links -->
+<ul>
+    <li><a href="/inv/add-classification">Add Classification</a></li>
+    <li><a href="/inv/add-inventory">Add Inventory</a></li>
+</ul>
+
+<!-- Manage Inventory Section -->
+<h2>Manage Inventory</h2>
+<p>Select a classification from the list to see the items belonging to that classification.</p>
+
+<!-- Classification Select List -->
+<div class="classification-select">
+    <%- classificationSelect %>
+</div>
+
+<!-- Inventory Table (DOM manipulation will fill this) -->
+<table id="inventoryDisplay"></table>
+
+<!-- Fallback for users with JavaScript disabled -->
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<!-- Inventory Management JavaScript -->
+<script src="../../js/inventory.js"></script>

@@ -161,3 +161,154 @@ img {
 .margin-bottom {
     margin-bottom: 1rem;
 }
+
+/* Inventory Table Styling */
+#inventoryDisplay {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+#inventoryDisplay thead {
+    background-color: #004080;
+    /* dark blue header */
+    color: white;
+    text-align: left;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+}
+
+#inventoryDisplay tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#inventoryDisplay tbody tr:hover {
+    background-color: #cce6ff;
+}
+
+#inventoryDisplay a {
+    color: #004080;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#inventoryDisplay a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================
+   Inventory Edit / Add Form
+========================== */
+form {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+form h1,
+form h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+form .error {
+    color: #d9534f;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+form button[type="submit"] {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+}
+
+/* Classification select list styling */
+.classification-select select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.success {
+    background-color: #e6f7ff;
+    border-left: 4px solid #004080;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #004080;
+}
+
+.error {
+    background-color: #ffe6e6;
+    border-left: 4px solid #cc0000;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #800000;
+}

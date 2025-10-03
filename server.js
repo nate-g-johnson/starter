@@ -18,6 +18,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
 const errorRoute = require("./routes/errorRoute")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -33,16 +34,24 @@ const errorRoute = require("./routes/errorRoute")
   name: 'sessionId',
  }))
 
- // Express Messages Middleware
+// Flash Middleware
 app.use(require('connect-flash')())
-app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res)
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success")
+  res.locals.error = req.flash("error")
   next()
 })
+
 
 // Body Parser Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// Cookie Parser Middleware
+app.use(cookieParser())
+
+// JWT Middleware
+app.use(utilities.checkJWTToken)
 
 /* ***********************
  * View Engine and Templates

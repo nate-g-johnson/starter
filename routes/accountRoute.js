@@ -1,33 +1,73 @@
-//Needed Resources
-const regValidate = require("../utilities/account-validation")
-const express = require("express")
-const router = new express.Router()
-const utilities = require("../utilities/")
-const accountController = require("../controllers/accountController")
+// Needed Resources
+const express = require("express");
+const router = express.Router();
+const utilities = require("../utilities/");
+const accountController = require("../controllers/accountController");
+const validate = require("../utilities/account-validation");
 
-//Routes
+// Account Routes
 
-//Login view
-router.get("/login", utilities.handleErrors(accountController.buildLogin))
+// Login view
+router.get("/login", utilities.handleErrors(accountController.buildLogin));
 
-//register view
-router.get("/register", utilities.handleErrors(accountController.buildRegister))
+// Register view
+router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
-// Process the registration data
+// Account management view
+router.get(
+  "/",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountManagement)
+);
+
+// Process registration
 router.post(
   "/register",
-  regValidate.registrationRules(),
-  regValidate.checkRegData,
+  validate.registrationRules(),
+  validate.checkRegData,
   utilities.handleErrors(accountController.registerAccount)
-)
+);
 
-// Process the login attempt
+// Process login attempt
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
-)
+  validate.loginRules(),
+  validate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
 
-//Export
+// Update account info (all users)
+router.get(
+  "/update/:account_id",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccountUpdate)
+);
+
+// POST update info (first name, last name, email)
+router.post(
+  "/update-info",
+  utilities.checkLogin,
+  validate.registrationRules(),
+  validate.checkRegData,
+  utilities.handleErrors(accountController.updateAccountInfo)
+);
+
+// POST update password
+router.post(
+  "/update-password",
+  utilities.checkLogin,
+  validate.passwordRules(),
+  validate.checkRegData,
+  utilities.handleErrors(accountController.updatePassword)
+);
+
+// Logout route
+router.get(
+  "/logout",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.accountLogout)
+);
+
+
+// Export
 module.exports = router;

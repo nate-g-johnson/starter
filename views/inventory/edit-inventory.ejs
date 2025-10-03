@@ -1,0 +1,74 @@
+<h1>Edit Inventory Item</h1>
+
+<!-- Display errors, if any -->
+<% if (success && success.length) { %>
+  <div class="notice">
+    <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="error-messages">
+    <% error.forEach(err => { %>
+      <p class="error"><%= err %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<form id="updateForm" action="/inv/update" method="post" novalidate>
+    <!-- Hidden field to store inventory ID -->
+    <input type="hidden" name="inv_id" value="<%= inv_id %>">
+
+    <!-- Classification Select -->
+    <label for="classification_id">Classification</label>
+    <div>
+        <%- classificationSelect %>
+    </div>
+
+    <!-- Vehicle Make -->
+    <label for="inv_make">Make</label>
+    <input name="inv_make" type="text" required value="<%= inv_make %>">
+
+    <!-- Vehicle Model -->
+    <label for="inv_model">Model</label>
+    <input name="inv_model" type="text" required value="<%= inv_model %>">
+
+    <!-- Year -->
+    <label for="inv_year">Year</label>
+    <input name="inv_year" type="number" required value="<%= inv_year %>">
+
+    <!-- Description -->
+    <label for="inv_description">Description</label>
+    <textarea name="inv_description" required><%= inv_description %></textarea>
+
+    <!-- Image -->
+    <label for="inv_image">Image Path</label>
+    <input name="inv_image" type="text" required value="<%= inv_image || '/images/no-image-available.png' %>">
+
+    <!-- Thumbnail -->
+    <label for="inv_thumbnail">Thumbnail Path</label>
+    <input name="inv_thumbnail" type="text" required value="<%= inv_thumbnail || '/images/no-image-available-tn.png' %>">
+
+    <!-- Price -->
+    <label for="inv_price">Price</label>
+    <input name="inv_price" type="number" step="0.01" required value="<%= inv_price %>">
+
+    <!-- Optional: Miles -->
+    <% if (typeof inv_miles !== 'undefined') { %>
+        <label for="inv_miles">Miles</label>
+        <input name="inv_miles" type="number" value="<%= inv_miles %>">
+    <% } %>
+
+    <!-- Optional: Color -->
+    <% if (typeof inv_color !== 'undefined') { %>
+        <label for="inv_color">Color</label>
+        <input name="inv_color" type="text" value="<%= inv_color %>">
+    <% } %>
+
+    <!-- Submit Button -->
+    <button type="submit" disabled>Update Vehicle</button>
+
+</form>
+<script src="/js/inv-update.js"></script>

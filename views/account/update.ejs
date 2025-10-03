@@ -1,0 +1,78 @@
+<h1>Update Account Information</h1>
+
+<!-- Flash / error messages -->
+<% if (success && success.length) { %>
+  <div class="notice">
+    <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="error-messages">
+    <% error.forEach(err => { %>
+      <p class="error"><%= err %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<!-- Account Update Form -->
+<form action="/account/update-info" method="POST">
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+  <label for="account_firstname">First Name:</label>
+  <input type="text" name="account_firstname" id="account_firstname" 
+         value="<%= accountData.account_firstname %>" required>
+  <% if (errors) { %>
+    <% errors.forEach(err => { %>
+      <% if(err.param === 'account_firstname') { %>
+        <p class="error"><%= err.msg %></p>
+      <% } %>
+    <% }) %>
+  <% } %>
+
+  <label for="account_lastname">Last Name:</label>
+  <input type="text" name="account_lastname" id="account_lastname" 
+         value="<%= accountData.account_lastname %>" required>
+  <% if (errors) { %>
+    <% errors.forEach(err => { %>
+      <% if(err.param === 'account_lastname') { %>
+        <p class="error"><%= err.msg %></p>
+      <% } %>
+    <% }) %>
+  <% } %>
+
+  <label for="account_email">Email:</label>
+  <input type="email" name="account_email" id="account_email" 
+         value="<%= accountData.account_email %>" required>
+  <% if (errors) { %>
+    <% errors.forEach(err => { %>
+      <% if(err.param === 'account_email') { %>
+        <p class="error"><%= err.msg %></p>
+      <% } %>
+    <% }) %>
+  <% } %>
+
+  <input type="submit" value="Update Account">
+</form>
+
+<hr>
+
+<!-- Change Password Form -->
+<form action="/account/update-password" method="POST">
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+  <label for="account_password">New Password:</label>
+  <input type="password" name="account_password" id="account_password" required>
+  <p>Password must be at least 12 characters, include upper/lowercase letters, numbers, and symbols.</p>
+  <% if (errors) { %>
+    <% errors.forEach(err => { %>
+      <% if(err.param === 'account_password') { %>
+        <p class="error"><%= err.msg %></p>
+      <% } %>
+    <% }) %>
+  <% } %>
+
+  <input type="submit" value="Change Password">
+</form>

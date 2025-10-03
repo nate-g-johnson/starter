@@ -1,0 +1,33 @@
+<h1><%= title %></h1>
+
+<!-- Flash / error messages -->
+<% if (success && success.length) { %>
+  <div class="notice">
+    <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<% if (error && error.length) { %>
+  <div class="error-messages">
+    <% error.forEach(err => { %>
+      <p class="error"><%= err %></p>
+    <% }) %>
+  </div>
+<% } %>
+
+<!-- Account Management Content -->
+<h2>Welcome <%= accountData.account_firstname %></h2>
+
+<!-- Update account link (all users) -->
+<p>
+  <a href="/account/update/<%= accountData.account_id %>">Update Account Information</a>
+</p>
+
+<% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+  <h3>Inventory Management</h3>
+  <p>
+    <a href="/inv">Access Inventory Management</a>
+  </p>
+<% } %>

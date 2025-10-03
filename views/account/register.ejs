@@ -3,19 +3,21 @@
 </h1>
 
 <!-- Flash / error message -->
-<% if (messages) { %>
-    <%= messages() %>
-        <% } %>
+<% if (success && success.length) { %>
+  <div class="notice">
+    <% success.forEach(msg => { %>
+      <p><%= msg %></p>
+    <% }) %>
+  </div>
+<% } %>
 
-<% if (errors) { %>
-    <ul class="notice">
-        <% errors.array().forEach(error=> { %>
-            <li>
-                <%= error.msg %>
-            </li>
-            <% }) %>
-    </ul>
-    <% } %>
+<% if (error && error.length) { %>
+  <div class="error-messages">
+    <% error.forEach(err => { %>
+      <p class="error"><%= err %></p>
+    <% }) %>
+  </div>
+<% } %>
 
     <!-- Registration Form -->
     <form method="post" action="/account/register" class="auth-form">
