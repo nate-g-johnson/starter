@@ -53,6 +53,13 @@ app.use(cookieParser())
 // JWT Middleware
 app.use(utilities.checkJWTToken)
 
+// Make loggedin and accountData available in all views
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session.loggedin || false;
+  res.locals.accountData = req.session.accountData || {};
+  next();
+});
+
 /* ***********************
  * View Engine and Templates
  *************************/
