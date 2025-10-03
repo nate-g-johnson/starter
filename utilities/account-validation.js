@@ -31,7 +31,7 @@ validate.registrationRules = () => {
         if (req.originalUrl.includes("/register")) {
           const emailExists = await accountModel.checkExistingEmail(account_email);
           if (emailExists) {
-            throw new Error("Email exists. Please log in or use different email");
+            throw new Error("Email exists. Please log in or use a different email");
           }
         }
       }),
@@ -81,18 +81,6 @@ validate.checkData = async (req, res, next) => {
   if (!errors.isEmpty()) {
     req.flash("errors", errors.array().map(err => err.msg));
     return res.redirect("back");
-  }
-  next();
-};
-
-/* ******************************
- * Password checker (for password updates)
- * ***************************** */
-validate.checkPasswordData = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    req.flash("errors", errors.array().map(err => err.msg));
-    return res.redirect("back"); 
   }
   next();
 };

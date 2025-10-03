@@ -24,7 +24,7 @@ router.get(
 router.post(
   "/register",
   validate.registrationRules(),
-  validate.checkRegData,
+  validate.checkData,
   utilities.handleErrors(accountController.registerAccount)
 );
 
@@ -48,7 +48,7 @@ router.post(
   "/update-info",
   utilities.checkLogin,
   validate.registrationRules(),
-  validate.checkRegData,
+  validate.checkData,
   utilities.handleErrors(accountController.updateAccountInfo)
 );
 
@@ -57,7 +57,7 @@ router.post(
   "/update-password",
   utilities.checkLogin,
   validate.passwordRules(),
-  validate.checkData, // <- fixed: use existing checkData
+  validate.checkData,
   utilities.handleErrors(accountController.updatePassword)
 );
 
