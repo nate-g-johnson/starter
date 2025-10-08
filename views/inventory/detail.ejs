@@ -31,4 +31,23 @@
                 <%= vehicle.inv_description %>
             </p>
         </div>
+
+        <!--Favorites Button-->
+        <div class="favorite-actions">
+            <% if (loggedin) { %>
+                <% if (isFavorited) { %>
+                    <form method="post" action="/account/favorites/remove/<%= vehicle.inv_id %>" class="favorite-form">
+                        <button type="submit" class="fav-btn remove">★ Remove Favorite</button>
+                    </form>
+                <% } else { %>
+                    <form method="post" action="/account/favorites/add/<%= vehicle.inv_id %>" class="favorite-form">
+                        <button type="submit" class="fav-btn add">☆ Add to Favorites</button>
+                    </form>
+                <% } %>
+            <% } else { %>
+                <p><a href="/account/login">Log in</a> to add this vehicle to your favorites.</p>
+            <% } %>
+        </div>
+        <!--End of Favorites Button Section -->
+
     </section>

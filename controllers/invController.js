@@ -252,36 +252,37 @@ invCont.updateInventory = async function (req, res, next) {
 /* ***************************
  *  Build delete confirmation view
  * ************************** */
-invCont.buildDeleteView = async function (req, res, next) {
+invCont.buildDetailView = async function (req, res, next) {
   try {
     const inv_id = parseInt(req.params.inv_id)
-    const itemData = await invModel.getVehicleById(inv_id)
+    const vehicle = await invModel.getVehicleById(inv_id)
 
-    if (!itemData) {
+    if (!vehicle) {
       return next({ status: 404, message: "Vehicle not found" })
     }
 
     const nav = await utilities.getNav()
-    const itemName = `${itemData.inv_make} ${itemData.inv_model}`
-    const success = req.flash("success")
-    const error = req.flash("error")
 
-    res.render("./inventory/delete-confirm", {
-      title: "Delete " + itemName,
+    // Determine if current user has this favorited
+    let isFavorited = false
+    const account = req.session && req.session.account
+    if (account) {
+      const favModel = require("../models/favorites-model")
+      const fav = await favModel.checkFavorite(account.account_id, inv_id)
+      isFavorited = !!fav
+    }
+
+    res.render("./inventory/detail", {
+      title: `${vehicle.inv_make} ${vehicle.inv_model}`,
       nav,
-      errors: null,
-      success,
-      error,
-      inv_id: itemData.inv_id,
-      inv_make: itemData.inv_make,
-      inv_model: itemData.inv_model,
-      inv_year: itemData.inv_year,
-      inv_price: itemData.inv_price
+      vehicle,
+      isFavorited, // NEW
     })
-  } catch (err) {
-    next(err)
+  } catch (error) {
+    next(error)
   }
 }
+
 
 /* ***************************
  *  Delete Inventory Data

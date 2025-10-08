@@ -10,6 +10,7 @@ Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = "<ul>"
   list += '<li><a href="/" title="Home page">Home</a></li>'
+  list += '<li><a href="/account/favorites" title="View your favorite vehicles">Favorites</a></li>'
   data.rows.forEach((row) => {
     list += "<li>"
     list +=
@@ -103,24 +104,27 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
- if (req.cookies.jwt) {
-  jwt.verify(
-   req.cookies.jwt,
-   process.env.ACCESS_TOKEN_SECRET,
-   function (err, accountData) {
+  const token = req.cookies.jwt
+  if (!token) {
+    res.locals.loggedin = false
+    res.locals.accountData = {}
+    return next()
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
     if (err) {
-     req.flash("Please log in")
-     res.clearCookie("jwt")
-     return res.redirect("/account/login")
+      console.log("JWT verification failed:", err.message)
+      res.clearCookie("jwt")
+      res.locals.loggedin = false
+      res.locals.accountData = {}
+      return next()
     }
+    res.locals.loggedin = true
     res.locals.accountData = accountData
-    res.locals.loggedin = 1
     next()
-   })
- } else {
-  next()
- }
+  })
 }
+
 
 /* ****************************************
  *  Check Login

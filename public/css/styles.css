@@ -414,3 +414,67 @@ ul.error li {
   border: 1px solid #cc0000;
   color: #990000;
 }
+
+/* ===============================
+   FAVORITES BUTTON STYLING
+   =============================== */
+
+.favorite-actions {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.favorite-form {
+  display: inline-block;
+}
+
+.fav-btn {
+  display: inline-block;
+  font-family: var(--body-font), sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+/* Add button (not yet a favorite) */
+.fav-btn.add {
+  background-color: var(--main-accent);
+  color: var(--primary-background);
+}
+
+.fav-btn.add:hover {
+  background-color: #046ba8;
+  transform: scale(1.05);
+}
+
+/* Remove button (already favorited) */
+.fav-btn.remove {
+  background-color: #ccc;
+  color: var(--primary-text);
+}
+
+.fav-btn.remove:hover {
+  background-color: #b3b3b3;
+  transform: scale(1.05);
+}
+
+/* Message for users not logged in */
+.favorite-actions p {
+  font-size: 0.95rem;
+  color: var(--primary-text);
+}
+
+.favorite-actions a {
+  color: var(--main-accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.favorite-actions a:hover {
+  text-decoration: underline;
+}

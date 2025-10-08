@@ -1,0 +1,22 @@
+<h1>My Favorites</h1>
+
+<% if (favorites && favorites.length) { %>
+  <ul class="favorites-list">
+    <% favorites.forEach(function(item) { %>
+      <li class="favorite-item">
+        <h3>
+          <a href="/inv/detail/<%= item.inv_id %>">
+            <%= item.inv_make %> <%= item.inv_model %> (<%= item.inv_year %>)
+          </a>
+        </h3>
+        <p>Price: $<%= item.inv_price %></p>
+
+        <form method="post" action="/account/favorites/remove/<%= item.inv_id %>">
+          <button type="submit">Remove</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>You haven't favorited any vehicles yet. Visit a vehicle's detail page to add it to favorites.</p>
+<% } %>
